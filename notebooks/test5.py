@@ -4,14 +4,13 @@ from string_extraction_function import extract_text_between_strings
 from text_search_function import search_string_in_text
 from code_extraction_function import  extract_code_blocks
 from print_codeblocks_function import print_code_blocks
-
-
-
+from nomark_code_extraction_function import filter_python_expressions
 
 def search_github_discussion_gql(username, repository, discussion_number, start_string, end_string, search_strings, token):
     api_url = 'https://api.github.com/graphql'
-    graphql_query = """
-    query GetDiscussion($owner: String!, $repo: String!, $discussionNumber: Int!) {
+    
+    # GraphQL-Abfrage mit dreifachen doppelten Anführungszeichen
+    graphql_query = """query GetDiscussion($owner: String!, $repo: String!, $discussionNumber: Int!) {
       repository(owner: $owner, name: $repo) {
         discussion(number: $discussionNumber) {
           title
@@ -23,8 +22,8 @@ def search_github_discussion_gql(username, repository, discussion_number, start_
           }
         }
       }
-    }
-    """
+    }""".replace("\n", " ")  # Zeilenumbrüche durch Leerzeichen ersetzen, um Syntaxfehler zu vermeiden
+
     headers = {'Authorization': f'token {token}'}
     variables = {"owner": username, "repo": repository, "discussionNumber": discussion_number}
     json_payload = {"query": graphql_query, "variables": variables}
@@ -47,6 +46,7 @@ def search_github_discussion_gql(username, repository, discussion_number, start_
 
         # Extrahiere Codeblöcke aus dem Diskussionsbeitrag und speichere sie in einer Liste
         code_blocks = extract_code_blocks(discussion_body)
+        
 
         comments = discussion_data.get('comments', {}).get('nodes', [])
         for comment in comments:
@@ -61,6 +61,8 @@ def search_github_discussion_gql(username, repository, discussion_number, start_
             # Extrahiere Codeblöcke aus dem Kommentar und speichere sie in derselben Liste
             code_blocks.extend(extract_code_blocks(comment_body))
 
+        filter_python_expressions(discussion_body)
+
         # Gib die Liste der Codeblöcke aus
         return code_blocks
 
@@ -72,8 +74,8 @@ def search_github_discussion_gql(username, repository, discussion_number, start_
 # GitHub Benutzername, Repository, Diskussionsnummer und persönliches Token
 github_username = 'UngemachM'
 repository_name = 'ProgrammingMoritzUngemach'
-discussion_number = 10
-personal_token = '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'
+discussion_number = 11
+personal_token = 'PLACE ACCSES TOKEN HERE'
 
 # Suchzeichenfolgen, nach denen gesucht werden soll
 search_strings = ['Pythorn', 'GirlHub']
@@ -87,3 +89,4 @@ code_blocks_array = search_github_discussion_gql(github_username, repository_nam
 
 # Gib das Array der Codeblöcke aus
 print_code_blocks(code_blocks_array)
+
