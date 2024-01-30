@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="link" method="post" action=""></form>
+    <label for="linkInput">Geben Sie einen Link ein:</label>
+    <input type="text" id="linkInput" name="linkInput" placeholder="https://www.example.com">
+    <input type="submit">
+
+</form>
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $linkValue = isset($_POST['linkInput']) ? $_POST['linkInput'] : '';
+
+        if (trim($linkValue) !== '') {
+            echo '<p>Eingegebener Link: ' . htmlspecialchars($linkValue) . '</p>';
+        } else {
+            echo '<p>Bitte geben Sie einen Link ein.</p>';
+        }
+    }
+    ?>
+</body>
+</html>

@@ -1,3 +1,4 @@
+from flask import Flask, render_template, request
 import requests
 import re
 from string_extraction_function import extract_text_between_strings
@@ -6,6 +7,9 @@ from code_extraction_function import  extract_code_blocks
 from print_codeblocks_function import print_code_blocks
 from nomark_code_extraction_function import filter_python_expressions
 
+app = Flask(__name__)
+
+# Füge hier deine Funktion hinzu
 def search_github_discussion_gql(username, repository, discussion_number, start_string, end_string, search_strings, token):
     api_url = 'https://api.github.com/graphql'
     
@@ -70,23 +74,31 @@ def search_github_discussion_gql(username, repository, discussion_number, start_
         print(f'Diskussion mit Nummer {discussion_number} wurde nicht gefunden.')
     else:
         print(f'Fehler bei der Anfrage: {response.status_code}')
+# Definiere die Route für die Webanwendung
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Benutzername, Repository, Diskussionsnummer und persönliches Token aus dem Webformular abrufen
+        github_username = request.form['username']
+        repository_name = request.form['repository']
+        discussion_number = int(request.form['discussion_number'])
+        personal_token = request.form['personal_token']
 
-# GitHub Benutzername, Repository, Diskussionsnummer und persönliches Token
-github_username = 'UngemachM'
-repository_name = 'ProgrammingMoritzUngemach'
-discussion_number = 11
-personal_token = '-------------------'
+        # Suchzeichenfolgen, nach denen gesucht werden soll
+        search_strings = request.form.get('search_strings', '').split(',')
 
-# Suchzeichenfolgen, nach denen gesucht werden soll
-search_strings = ['Pythorn', 'GirlHub']
+        # Zeichenfolgen, zwischen denen der Text extrahiert werden soll
+        start_string = request.form['start_string']
+        end_string = request.form['end_string']
 
-# Zeichenfolgen, zwischen denen der Text extrahiert werden soll
-start_string = 'Start:'
-end_string = 'End:'
+        # Rufe die GitHub-Diskussionsfunktion auf
+        code_blocks_array = search_github_discussion_gql(github_username, repository_name, discussion_number, start_string, end_string, search_strings, personal_token)
 
-# Durchsuche die Diskussion nach den gewünschten Zeichenfolgen, extrahiere Text und Codeblöcke
-code_blocks_array = search_github_discussion_gql(github_username, repository_name, discussion_number, start_string, end_string, search_strings, personal_token)
+        # Zeige das Ergebnis in der Webanwendung an
+        return render_template('result.html', code_blocks=code_blocks_array)
 
-# Gib das Array der Codeblöcke aus
-print_code_blocks(code_blocks_array)
+    # Zeige das Eingabeformular an
+    return render_template('index3.html')
 
+if __name__ == '__main__':
+    app.run(debug=True)
