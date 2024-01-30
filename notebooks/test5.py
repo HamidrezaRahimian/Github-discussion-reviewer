@@ -75,7 +75,7 @@ def search_github_discussion_gql(username, repository, discussion_number, start_
 github_username = 'UngemachM'
 repository_name = 'ProgrammingMoritzUngemach'
 discussion_number = 11
-personal_token = '-------------------'
+personal_token = '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'
 
 # Suchzeichenfolgen, nach denen gesucht werden soll
 search_strings = ['Pythorn', 'GirlHub']

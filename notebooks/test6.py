@@ -9,7 +9,7 @@ from nomark_code_extraction_function import filter_python_expressions
 
 app = Flask(__name__)
 
-# Füge hier deine Funktion hinzu
+
 def search_github_discussion_gql(username, repository, discussion_number, start_string, end_string, search_strings, token):
     api_url = 'https://api.github.com/graphql'
     
@@ -94,6 +94,7 @@ def index():
         # Rufe die GitHub-Diskussionsfunktion auf
         code_blocks_array = search_github_discussion_gql(github_username, repository_name, discussion_number, start_string, end_string, search_strings, personal_token)
 
+        code_blocks = [] 
         # Zeige das Ergebnis in der Webanwendung an
         return render_template('result.html', code_blocks=code_blocks_array)
 
