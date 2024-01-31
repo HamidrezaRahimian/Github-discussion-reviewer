@@ -99,7 +99,7 @@ def index():
         return render_template('result.html', code_blocks=code_blocks_array)
 
     # Zeige das Eingabeformular an
-    return render_template('index3.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
