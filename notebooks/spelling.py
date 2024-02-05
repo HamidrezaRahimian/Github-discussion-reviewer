@@ -1,5 +1,6 @@
 from spellchecker import SpellChecker
 
+
 def correct_spelling(discussion_body):
     spell = SpellChecker()
 
@@ -25,15 +26,4 @@ def correct_spelling(discussion_body):
 
     return corrected_text
 
-def main():
-    # Get input text from the github discussion
-    input_text = input("Enter the text with spelling mistakes: ")
 
-    # Correct the spelling mistakes of the review in English only :DDDD
-    corrected_text = correct_spelling(input_text)
-
-    # Display the corrected text
-    print(corrected_text)
-
-if __name__ == "__main__":
-    main()
