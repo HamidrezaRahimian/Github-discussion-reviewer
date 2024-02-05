@@ -21,17 +21,14 @@ def index():
         start_string = request.form['start_string']
         end_string = request.form['end_string']
 
-        # Rufe die GitHub-Diskussionsfunktion auf
         code_blocks_array = search_github_discussion_gql_code(github_username, repository_name, discussion_number, personal_token)
 
+        # Call GitHub discussion function to get code blocks without markdown
         nomark_code_array = nomark_search_github_discussion_gql(github_username, repository_name, discussion_number, personal_token)
 
-        code_blocks = []
 
-        nomark_code = []
         # Zeige das Ergebnis in der Webanwendung an
-        return render_template('result.html', code_blocks=code_blocks_array, nomark_code=nomark_code_array,  )
-          #nomark_code=nomark_code_array
+        return render_template('result.html', code_blocks=code_blocks_array, nomark_code=nomark_code_array)          #nomark_code=nomark_code_array
     # Zeige das Eingabeformular an
     return render_template('index2.html')
 
