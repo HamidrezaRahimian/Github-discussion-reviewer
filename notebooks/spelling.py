@@ -1,6 +1,6 @@
 from spellchecker import SpellChecker
 
-def correct_spelling(text):
+def correct_spelling(discussion_body):
     spell = SpellChecker()
 
     # Split the text into words hohahahaaa
@@ -26,7 +26,7 @@ def correct_spelling(text):
     return corrected_text
 
 def main():
-    # Get input text from the review
+    # Get input text from the github discussion
     input_text = input("Enter the text with spelling mistakes: ")
 
     # Correct the spelling mistakes of the review in English only :DDDD
