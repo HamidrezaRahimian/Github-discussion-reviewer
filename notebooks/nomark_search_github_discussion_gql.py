@@ -33,7 +33,7 @@ def nomark_search_github_discussion_gql(username, repository, discussion_number,
         discussion_body = discussion_data.get('body', '')
 
         # Extrahiere Codeblöcke aus dem Diskussionsbeitrag und speichere sie in einer Liste
-        code_blocks = filter_python_expressions(discussion_body)
+        code_blocks = filter_python_expressions(sample_text)
         
 
         comments = discussion_data.get('comments', {}).get('nodes', [])
@@ -45,9 +45,61 @@ def nomark_search_github_discussion_gql(username, repository, discussion_number,
             code_blocks.extend(filter_python_expressions(comment_body))
 
         # Gib die Liste der Codeblöcke aus
-        return code_blocks
+        return code_blocks,
 
     elif response.status_code == 404:
         print(f'Diskussion mit Nummer {discussion_number} wurde nicht gefunden.')
     else:
         print(f'Fehler bei der Anfrage: {response.status_code}')
+
+sample_text = """
+The purpos of this blog post is just to test out projekt capability of extracting code from posts.
+
+```
+testtesttesttesttesttest
+test
+test
+test
+test
+```
+
+import requests
+import re
+from string_extraction_function import extract_text_between_strings
+from text_search_function import search_string_in_text
+from code_extraction_function import  extract_code_blocks
+from print_codeblocks_function import print_code_blocks
+
+# Zeichne die Ränder des Quadrats
+for i in range(seitenlänge):
+    for j in range(seitenlänge):
+        if i == 0 or i == seitenlänge - 1 or j == 0 or j == seitenlänge - 1:
+            print(zeichen, end=' ')
+        else:
+            if i==1:
+                print (" ", end=' ')
+            if i==2:
+# Zeichne die Ränder des Quadrats
+for i in range(seitenlänge):
+    for j in range(seitenlänge):
+        if i == 0 or i == seitenlänge - 1 or j == 0 or j == seitenlänge - 1:
+            print(zeichen, end=' ')
+        else:
+            if i==1:
+                print (" ", end=' ')
+            if i==2:
+            
+
+
+
+
+
+```
+123124131
+testtesttesttesttesttest
+test
+test
+test
+test
+```
+"""       
