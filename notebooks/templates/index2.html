@@ -13,7 +13,7 @@
 
         <section>
 
-
+                </div>
                 <div class="input_divs">
                         <h1>Github Discussion Search</h1>
                         <form class="form1" method="post" action="">
@@ -28,21 +28,36 @@
 
                                 <label for="personal_token">Personal Token:</label>
                                 <input type="text" name="personal_token" required><br>
-
-                                <label for="search_strings">Search Strings (comma-separated):</label>
-                                <input type="text" name="search_strings"><br>
-
-                                <label for="start_string">Start String:</label>
-                                <input type="text" name="start_string" required><br>
-
-                                <label for="end_string">End String:</label>
-                                <input type="text" name="end_string" required><br>
-
-                                <input type="submit" value="Search">
+                                <details>
+                                        <summary>Show/Hide Search Strings</summary>
+                                                <label for="search_strings">Search Strings (comma-separated):</label>
+                                                <input type="text" name="search_strings"><br>
+                                          
+                                       
+                                </details>
+                        
+                    
+                        
+                                <details>
+                                        <summary>Show/Hide Start and End Strings</summary>
+                                        <div>
+                                            <!-- Start String -->
+                                            <label for="start_string">Start String:</label>
+                                            <input type="text" name="start_string"><br>
+                            
+                                            <!-- End String -->
+                                            <label for="end_string">End String:</label>
+                                            <input type="text" name="end_string"><br>
+                                        </div>
+                                    </details>
+                            
+                                    <!-- ... (andere Eingabefelder) ... -->
+                            
+                                    <!-- Submit Button außerhalb des details Elements -->
+                                    <input type="submit" value="Search">
                         </form>
-
-                </div>
-
+                    </div>
+                    
 
 
                 <div class="leaf">

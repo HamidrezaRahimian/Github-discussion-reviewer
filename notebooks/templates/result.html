@@ -13,7 +13,7 @@
     <section>
         <div>
             <h1 class="h1">Search Results</h1>
-            <h2 class="h2">Code Blocks:</h2>
+            <h2 class="h2">Dieser Text ist als Code markiert, stelle sicher das es sich dabei auch um Code handelt.</h2>
                 <ul class="result_list">
                     {% for code_block in code_blocks %}
                        <li>{{ code_block }}</li>
@@ -25,7 +25,7 @@
             <h2 class="h2">Nomark Code Blocks:</h2>
                 <ul class="result_list">
                     {% for nomark_code in nomark_code %}
-                       <li>{{ nomark_code }}</li>
+                       <li>{{ nomark_code }}<br></li>
                     {% endfor %}
                     <br>
         </ul>

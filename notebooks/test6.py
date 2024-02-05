@@ -30,7 +30,7 @@ def index():
 
         nomark_code = []
         # Zeige das Ergebnis in der Webanwendung an
-        return render_template('result.html', code_blocks=code_blocks_array, nomark_code=nomark_code_array  )
+        return render_template('result.html', code_blocks=code_blocks_array, nomark_code=nomark_code_array,  )
           #nomark_code=nomark_code_array
     # Zeige das Eingabeformular an
     return render_template('index2.html')

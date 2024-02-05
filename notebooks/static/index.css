@@ -163,3 +163,12 @@ section {
 .form1 label {
     margin-bottom: 10px;
 }
+
+details div input {
+    flex: 1 0 45%;
+    /* Adjust the width as needed */
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
