@@ -11,8 +11,9 @@ section {
     height: 100%;
     width: 100%;
     position: absolute;
-    background: radial-gradient(#be6fad, #ad0df8);
-}
+    background: radial-gradient(circle, #075a5d, #0d6b71 , #012b2e);
+    
+  }
 
 .leaf {
     position: absolute;
