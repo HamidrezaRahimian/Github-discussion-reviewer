@@ -36,7 +36,7 @@ def spelling_search_github_discussion_gql(username, repository, discussion_numbe
         corrected_text = correct_spelling(discussion_body)
 
         # Gib die Liste der Codeblöcke aus
-        return code_blocks
+        return corrected_text
 
     elif response.status_code == 404:
         print(f'Diskussion mit Nummer {discussion_number} wurde nicht gefunden.')

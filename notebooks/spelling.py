@@ -1,7 +1,7 @@
 from spellchecker import SpellChecker
 
 
-def correct_spelling(discussion_body):
+def correct_spelling(text):
     spell = SpellChecker()
 
     # Split the text into words hohahahaaa
@@ -22,7 +22,7 @@ def correct_spelling(discussion_body):
    # miss spelled correction is done_________________________________________________________
             
     # Join the corrected words back into a sentence
-    corrected_text = ' '.join(corrected_text)
+   
 
     return corrected_text
 
