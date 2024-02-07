@@ -1,8 +1,11 @@
 
 import requests
+from code_extraction_function import  extract_code_blocks
+from spelling import  correct_spelling
 from nomark_code_extraction_function import  filter_python_expressions
 
-def nomark_search_github_discussion_gql(username, repository, discussion_number, token):
+
+def universal_gql(username, repository, discussion_number, token, function):
     api_url = 'https://api.github.com/graphql'
     
     # GraphQL-Abfrage mit dreifachen doppelten Anführungszeichen
@@ -32,8 +35,12 @@ def nomark_search_github_discussion_gql(username, repository, discussion_number,
         discussion_title = discussion_data.get('title', '')
         discussion_body = discussion_data.get('body', '')
 
-        # Extrahiere Codeblöcke aus dem Diskussionsbeitrag und speichere sie in einer Liste
-        code_blocks = filter_python_expressions(discussion_body)
+        if function == "extract_code":
+          code_blocks = extract_code_blocks(discussion_body)
+        elif function == "spelling":
+          code_blocks = correct_spelling(discussion_body)
+        elif function == "nomark":
+          code_blocks = filter_python_expressions(discussion_body)
         
 
         comments = discussion_data.get('comments', {}).get('nodes', [])
@@ -42,7 +49,10 @@ def nomark_search_github_discussion_gql(username, repository, discussion_number,
             
 
             # Extrahiere Codeblöcke aus dem Kommentar und speichere sie in derselben Liste
-            code_blocks.extend(filter_python_expressions(comment_body))
+            if function == "extract_code":
+              code_blocks.extend(extract_code_blocks(comment_body))
+            elif function == "nomark":
+              code_blocks.extend(filter_python_expressions(comment_body))
 
         # Gib die Liste der Codeblöcke aus
         return code_blocks
