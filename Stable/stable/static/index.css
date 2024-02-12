@@ -1,0 +1,166 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+section {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: radial-gradient(circle, #075a5d, #0d6b71 , #012b2e);
+    
+  }
+
+.leaf {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    /* Add this line to make the leaf divs non-interactive */
+}
+
+/* Rest of your existing styles... */
+
+.leaf div {
+    position: absolute;
+    display: block;
+}
+
+.leaf div:nth-child(1) {
+    left: 20%;
+    animation: fall 15s linear infinite;
+    animation-delay: -2s;
+}
+
+.leaf div:nth-child(2) {
+    left: 70%;
+    animation: fall 15s linear infinite;
+    animation-delay: -4s;
+}
+
+.leaf div:nth-child(3) {
+    left: 10%;
+    animation: fall 20s linear infinite;
+    animation-delay: -7s;
+}
+
+.leaf div:nth-child(4) {
+    left: 50%;
+    animation: fall 18s linear infinite;
+    animation-delay: -5s;
+}
+
+.leaf div:nth-child(5) {
+    left: 85%;
+    animation: fall 14s linear infinite;
+    animation-delay: -5s;
+}
+
+.leaf div:nth-child(6) {
+    left: 15%;
+    animation: fall 16s linear infinite;
+    animation-delay: -10s;
+}
+
+.leaf div:nth-child(7) {
+    left: 90%;
+    animation: fall 15s linear infinite;
+    animation-delay: -4s;
+}
+
+@keyframes fall {
+    0% {
+        opacity: 1;
+        top: -10%;
+        transform: translateX(20px) rotate(0deg);
+    }
+
+    20% {
+        opacity: 0.8;
+        transform: translateX(-20px) rotate(45deg);
+    }
+
+    40% {
+        transform: translateX(-20px) rotate(90deg);
+    }
+
+    60% {
+        transform: translateX(-20px) rotate(135deg);
+    }
+
+    80% {
+        transform: translateX(-20px) rotate(180deg);
+    }
+
+    100% {
+        top: 110%;
+        transform: translateX(-20px) rotate(225deg);
+    }
+}
+
+.leaf1 {
+    transform: rotateX(180deg);
+}
+
+
+.input_divs {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.form1 {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    /* Adjust the width as needed */
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form1 label {
+    flex: 1 0 45%;
+    /* Adjust the width as needed */
+    display: block;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.form1 input {
+    flex: 1 0 45%;
+    /* Adjust the width as needed */
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.form1 input[type="submit"] {
+    background-color: #723384;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form1 input[type="submit"]:hover {
+    background-color: #9900ff;
+}
+
+/* Add some spacing between form elements */
+.form1 input,
+.form1 label {
+    margin-bottom: 10px;
+}
