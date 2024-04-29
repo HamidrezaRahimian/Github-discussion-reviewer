@@ -64,5 +64,5 @@ super simple and practical in fact , we got a real nice smooth 3D background , w
 ______
 how ever the CSS file was the hardest!
 we used also chat GPT to help us with that!
-feel free totake a look at it!
+feel free totake a look at it !
 
